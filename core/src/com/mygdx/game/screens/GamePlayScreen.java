@@ -11,10 +11,7 @@ public class GamePlayScreen extends AbstractScreen {
 		init();
 	}
 
-	private void init() {
-	initPlayer();
-		
-	}
+
 
 	private void initPlayer() {
 		player = new Player();
@@ -34,6 +31,14 @@ public class GamePlayScreen extends AbstractScreen {
 	private void update() {
 		stage.act();//rob update co klatke dla wszystkich aktorow
 		
+	}
+
+
+
+	@Override
+	protected void init() {
+		
+		initPlayer();
 	}
 
 }

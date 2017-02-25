@@ -1,4 +1,4 @@
-package com.mygdx.game.screens;
+ package com.mygdx.game.screens;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.utils.Timer;
@@ -25,11 +25,7 @@ public class SplashScreen extends AbstractScreen{
 		},1);
 	}
 
-	private void init() {
-		//TODO implement better assets loading when game grows
-		splashImg = new Texture("assets/badlogic.jpg");
-		
-	}
+
 	@Override
 	public void render(float delta) {
 		super.render(delta);
@@ -38,6 +34,13 @@ public class SplashScreen extends AbstractScreen{
 		
 		
 		spriteBatch.end();
+	}
+
+
+	@Override
+	protected void init() {
+		splashImg = new Texture("assets/badlogic.jpg");
+		
 	}
 
 
