@@ -71,7 +71,8 @@ this.setScreen(new SplashScreen(this));
 	}
 	public void resetGameScore() {
 		points = 0;
-		
+		prefs.putInteger(GAME_SCORE, points);
+		prefs.flush();
 	}
 
 
