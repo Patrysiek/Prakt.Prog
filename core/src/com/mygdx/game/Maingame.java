@@ -34,10 +34,16 @@ this.setScreen(new SplashScreen(this));
 	}
 	public void addPoint(){
 		points++;
+		UpdateSavedScore();
+}
+	private void UpdateSavedScore() {
 		prefs.putInteger(GAME_SCORE, points);
 		prefs.flush();
-}
-
+	}
+	public void resetGameScore() {
+		points = 0;
+		UpdateSavedScore();
+	}
 	
 
 	/**
@@ -69,11 +75,7 @@ this.setScreen(new SplashScreen(this));
 	public int getPoints() {
 		return points;
 	}
-	public void resetGameScore() {
-		points = 0;
-		prefs.putInteger(GAME_SCORE, points);
-		prefs.flush();
-	}
+
 
 
 
