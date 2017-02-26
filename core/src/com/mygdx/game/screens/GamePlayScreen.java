@@ -27,6 +27,10 @@ public class GamePlayScreen extends AbstractScreen {
 		// TODO Auto-generated method stub
 		super.render(delta);
 		update();
+		
+		
+		
+		
 		spriteBatch.begin();
 		stage.draw();//narysuj scene z aktorami 
 		spriteBatch.end();
@@ -61,7 +65,7 @@ public class GamePlayScreen extends AbstractScreen {
 		playerButton.addListener(new ClickListener(){
 		 @Override
 		public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-			 
+			 game.addPoint();
 			player.reactOnClick();
 			
 			return super.touchDown(event, x, y, pointer, button);

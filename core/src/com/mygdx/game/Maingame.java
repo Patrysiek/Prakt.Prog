@@ -10,18 +10,27 @@ public class Maingame extends Game {
 	public final static int HEIGHT = 700;
 
 	private boolean pause;
-	
+	private int points;
 	
 	@Override
 	public void create () {
 this.setScreen(new SplashScreen(this));
 		
 	}
-
+	public void addPoint(){
+		points++;
+		
+}
 
 	
 
-	
+	/**
+	 * ------------------------------------------------------------
+	 * ------------------------------------------------------------
+	 * ------------------GETTERS AND SETTERS-----------------------
+	 * ------------------------------------------------------------
+	 * ------------------------------------------------------------
+	 */
 	
 
 	
@@ -33,7 +42,25 @@ this.setScreen(new SplashScreen(this));
 	public void setPause(boolean pause) {
 		this.pause = pause;
 	}
-	
+
+
+
+
+
+
+
+
+	public int getPoints() {
+		return points;
+	}
+
+
+
+
+
+
+
+
 	
 
 	

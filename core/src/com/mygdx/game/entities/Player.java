@@ -36,8 +36,7 @@ public class Player extends Image{
 				Actions.sizeBy(growAmount, 20, 0.2f, Interpolation.circleOut),
 				Actions.sizeBy(-growAmount, -20, 0.2f, Interpolation.circle)
 				);
-		
-		
+	 
 		
 		
 		this.addAction(moveAction);
