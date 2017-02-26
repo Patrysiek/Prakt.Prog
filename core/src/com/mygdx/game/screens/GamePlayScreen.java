@@ -38,15 +38,13 @@ public class GamePlayScreen extends AbstractScreen {
 		resetScoreButton.setName("reset");
 		stage.addActor(resetScoreButton);
 		resetScoreButton.addListener(new ClickListener(){
-			
-			@Override
-			public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-				
-				return super.touchDown(event, x, y, pointer, button);
-			}
-			
-		game.ResetGameScore();
-			
+
+				@Override
+				public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+						game.resetGameScore();
+
+						return super.touchDown(event, x, y, pointer, button);
+				}
 		});
 	}
 	private void initPlayer() {
@@ -70,10 +68,10 @@ public class GamePlayScreen extends AbstractScreen {
 		// TODO Auto-generated method stub
 		super.render(delta);
 		update();
-		
-		
-		
-		
+
+
+
+
 		spriteBatch.begin();
 		stage.draw();//narysuj scene z aktorami 
 		spriteBatch.end();
@@ -82,7 +80,7 @@ public class GamePlayScreen extends AbstractScreen {
 	private void update() {
 		scoreLabel.setText("score :" + game.getPoints());
 		stage.act();//rob update co klatke dla wszystkich aktorow
-		
+
 	}
 
 
@@ -92,28 +90,28 @@ public class GamePlayScreen extends AbstractScreen {
 
 
 	private void initPlayerButton() {
-	playerButton = new Button(new ButtonStyle()) ;
+		playerButton = new Button(new ButtonStyle()) ;
 		playerButton.setWidth(460); 
 		playerButton.setHeight(360); 
 		playerButton.setX(10); 
 		playerButton.setY(170);
 		playerButton.setDebug(true);
-		
-		
+
+
 		stage.addActor(playerButton);
-		
+
 		playerButton.addListener(new ClickListener(){
-		 @Override
-		public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-			 game.addPoint();
-			player.reactOnClick();
-			
-			return super.touchDown(event, x, y, pointer, button);
-		}
-			
+			@Override
+			public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+				game.addPoint();
+				player.reactOnClick();
+
+				return super.touchDown(event, x, y, pointer, button);
+			}
+
 		});
-		
-		
+
+
 	}
 
 }

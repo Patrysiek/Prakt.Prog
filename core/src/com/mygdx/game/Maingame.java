@@ -69,6 +69,10 @@ this.setScreen(new SplashScreen(this));
 	public int getPoints() {
 		return points;
 	}
+	public void resetGameScore() {
+		points = 0;
+		
+	}
 
 
 
