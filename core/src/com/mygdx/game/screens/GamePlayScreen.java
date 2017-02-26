@@ -14,14 +14,41 @@ public class GamePlayScreen extends AbstractScreen {
 
 	private Player player;
 	private Button playerButton;
+	private Button resetScoreButton;
 	private Label scoreLabel;
-	
+
 	public GamePlayScreen(Maingame game) {
 		super(game);
 	}
+	@Override
+	protected void init() {
+		initPlayer();
+		initPlayerButton();
+		initResetScoreButton();
+	}
 
 
-
+	private void initResetScoreButton() {
+		resetScoreButton = new Button(new ButtonStyle());
+		resetScoreButton.setWidth(100);
+		resetScoreButton.setHeight(100);
+		resetScoreButton.setX(350);
+		resetScoreButton.setY(550);
+		resetScoreButton.setDebug(true);
+		resetScoreButton.setName("reset");
+		stage.addActor(resetScoreButton);
+		resetScoreButton.addListener(new ClickListener(){
+			
+			@Override
+			public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+				
+				return super.touchDown(event, x, y, pointer, button);
+			}
+			
+		game.ResetGameScore();
+			
+		});
+	}
 	private void initPlayer() {
 		player = new Player();
 		stage.addActor(player);
@@ -60,11 +87,7 @@ public class GamePlayScreen extends AbstractScreen {
 
 
 
-	@Override
-	protected void init() {
-		initPlayer();
-		initPlayerButton();
-	}
+
 
 
 
