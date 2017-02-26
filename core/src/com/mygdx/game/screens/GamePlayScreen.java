@@ -53,6 +53,7 @@ public class GamePlayScreen extends AbstractScreen {
 	}
 
 	private void update() {
+		scoreLabel.setText("score :" + game.getPoints());
 		stage.act();//rob update co klatke dla wszystkich aktorow
 		
 	}
