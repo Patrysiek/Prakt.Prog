@@ -9,11 +9,13 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.mygdx.game.Maingame;
 import com.mygdx.game.entities.Player;
+import com.mygdx.game.ui.IClickCallback;
+import com.mygdx.game.ui.PlayerButton;
 
 public class GamePlayScreen extends AbstractScreen {
 
 	private Player player;
-	private Button playerButton;
+	private PlayerButton playerButton;
 	private Button resetScoreButton;
 	private Label scoreLabel;
 
@@ -47,11 +49,10 @@ public class GamePlayScreen extends AbstractScreen {
 				}
 		});
 	}
-	private void initPlayer() {
-		player = new Player();
-		stage.addActor(player);
-		initScoreLabel();
-	}
+	
+
+	
+	
 	private void initScoreLabel() {
 		LabelStyle labelStyle = new LabelStyle();
 		labelStyle.font = new BitmapFont();
@@ -60,12 +61,31 @@ public class GamePlayScreen extends AbstractScreen {
 		scoreLabel.setY(650);
 		stage.addActor(scoreLabel);
 	}
+	
+	private void initPlayerButton() {
+		playerButton = new PlayerButton(new IClickCallback(){
+	
+			@Override
+			public void onClick(){
+			player.reactOnClick();
+			game.addPoint();
+			
+	}
+	
+});
+		stage.addActor(playerButton);
+	}
+	
+	private void initPlayer() {
+		player = new Player();
+		stage.addActor(player);
+		initScoreLabel();
+	}
 
-
-
+	
+	
 	@Override
 	public void render(float delta) {
-		// TODO Auto-generated method stub
 		super.render(delta);
 		update();
 
@@ -85,33 +105,5 @@ public class GamePlayScreen extends AbstractScreen {
 
 
 
-
-
-
-
-	private void initPlayerButton() {
-		playerButton = new Button(new ButtonStyle()) ;
-		playerButton.setWidth(460); 
-		playerButton.setHeight(360); 
-		playerButton.setX(10); 
-		playerButton.setY(170);
-		playerButton.setDebug(true);
-
-
-		stage.addActor(playerButton);
-
-		playerButton.addListener(new ClickListener(){
-			@Override
-			public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-				game.addPoint();
-				player.reactOnClick();
-
-				return super.touchDown(event, x, y, pointer, button);
-			}
-
-		});
-
-
-	}
 
 }
