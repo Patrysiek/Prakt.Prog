@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.mygdx.game.Maingame;
 import com.mygdx.game.entities.FlyObject;
+import com.mygdx.game.entities.FlyObject.FlyObjectType;
 import com.mygdx.game.entities.Player;
 import com.mygdx.game.ui.IClickCallback;
 import com.mygdx.game.ui.PlayerButton;
@@ -33,7 +34,7 @@ public class GamePlayScreen extends AbstractScreen {
 
 
 	private void initFlyObjects() {
-		flyObject1 = new FlyObject(flyObject1.MONEY);
+		flyObject1 = new FlyObject(FlyObjectType.PASSIVE, game);
 		stage.addActor(flyObject1);
 		flyObject1.fly();
 	}

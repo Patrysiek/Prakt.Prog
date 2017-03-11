@@ -6,18 +6,30 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.mygdx.game.Maingame;
 
 public class FlyObject extends Image{
-	public final static String MONEY = "assets/money.png";
 	
+	public enum FlyObjectType{
+		MONEY, PASSIVE
+		
+	}
+	
+	public final static String MONEY = "assets/money.png";
+	public final static String BAG = "assets/passive.png";
 	private final static int WIDTH = 50;
 	private final static int HEIGHT= 50;
 	
 	private final static int STARTING_X = 0;
 	private final static int STARTING_Y = -100;
-	
-	public FlyObject(String texture){
-		super(new Texture(texture));
+	private FlyObjectType type;
+	private Maingame game;
+	public FlyObject(FlyObjectType type, Maingame game){
+		super(new Texture(getTextureString(type)));
+
+this.type = type;
+this.game = game;
+
 
 		this.setOrigin(WIDTH/2, HEIGHT/2);
 		this.setSize(WIDTH, HEIGHT);
@@ -31,14 +43,38 @@ public class FlyObject extends Image{
 			public boolean touchDown(InputEvent event, float x, float y, 
 					int pointer, int button) {
 			
-				
-				FlyObject.this.remove();
-				
+				reactOnClick();
 				return super.touchDown(event, x, y, pointer, button);
 			}
+
+		
 			
 			
 		});
+	}
+	private void reactOnClick() {
+	
+		if(FlyObjectType.MONEY.equals(type)){
+			game.addPoints(50);
+		}
+		else if(FlyObjectType.PASSIVE.equals(type)){
+			game.addPassiveIncome();
+		}
+		FlyObject.this.remove();
+	}
+	private static String getTextureString(FlyObjectType type) {
+		
+		if(FlyObjectType.MONEY.equals(type)){
+			
+			return MONEY;
+		}
+		else if(FlyObjectType.PASSIVE.equals(type)){
+			
+			return BAG;
+		}
+		
+		
+		return "";
 	}
 	public void fly(){
 		Action a = Actions.parallel(

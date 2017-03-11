@@ -32,6 +32,10 @@ this.setScreen(new SplashScreen(this));
 		points = prefs.getInteger(GAME_SCORE);
 		
 	}
+	public void addPoints(int pointsToAdd){
+		points+=pointsToAdd;
+		UpdateSavedScore();
+}
 	public void addPoint(){
 		points++;
 		UpdateSavedScore();
@@ -44,7 +48,10 @@ this.setScreen(new SplashScreen(this));
 		points = 0;
 		UpdateSavedScore();
 	}
-	
+	public void addPassiveIncome() {
+		// TODO implement
+		System.out.println("passie income");
+	}
 
 	/**
 	 * ------------------------------------------------------------
@@ -75,6 +82,7 @@ this.setScreen(new SplashScreen(this));
 	public int getPoints() {
 		return points;
 	}
+	
 
 
 
