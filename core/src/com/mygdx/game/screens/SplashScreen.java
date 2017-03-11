@@ -30,7 +30,7 @@ public class SplashScreen extends AbstractScreen{
 	public void render(float delta) {
 		super.render(delta);
 		spriteBatch.begin();
-		spriteBatch.draw(splashImg, 0, 0);
+		spriteBatch.draw(splashImg, 30, 200);
 		
 		
 		spriteBatch.end();
@@ -39,7 +39,7 @@ public class SplashScreen extends AbstractScreen{
 
 	@Override
 	protected void init() {
-		splashImg = new Texture("assets/badlogic.jpg");
+		splashImg = new Texture("assets/splash.png");
 		
 	}
 

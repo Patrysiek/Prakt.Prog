@@ -1,5 +1,6 @@
 package com.mygdx.game.screens;
 
+import com.badlogic.gdx.graphics.Texture;
 import com.mygdx.game.Maingame;
 import com.mygdx.game.entities.Player;
 import com.mygdx.game.ui.IClickCallback;
@@ -13,12 +14,13 @@ public class GamePlayScreen extends AbstractScreen {
 	private PlayerButton playerButton;
 	private ResetScoreButton resetScoreButton;
 	private ScoreLabel scoreLabel;
-
+	private Texture bgTexture;
 	public GamePlayScreen(Maingame game) {
 		super(game);
 	}
 	@Override
 	protected void init() {
+		bgTexture = new Texture("assets/meadow.png");
 		initPlayer();
 		initPlayerButton();
 		initResetScoreButton();
@@ -75,9 +77,9 @@ public class GamePlayScreen extends AbstractScreen {
 		super.render(delta);
 		update();
 
-
-
-
+		spriteBatch.begin();
+		spriteBatch.draw(bgTexture, 0, 0,  Maingame.WIDTH, Maingame.HEIGHT);
+		spriteBatch.end();
 		spriteBatch.begin();
 		stage.draw();//narysuj scene z aktorami 
 		spriteBatch.end();
