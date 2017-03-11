@@ -1,7 +1,9 @@
 package com.mygdx.game.screens;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.mygdx.game.Maingame;
+import com.mygdx.game.entities.FlyObject;
 import com.mygdx.game.entities.Player;
 import com.mygdx.game.ui.IClickCallback;
 import com.mygdx.game.ui.PlayerButton;
@@ -14,19 +16,32 @@ public class GamePlayScreen extends AbstractScreen {
 	private PlayerButton playerButton;
 	private ResetScoreButton resetScoreButton;
 	private ScoreLabel scoreLabel;
-	private Texture bgTexture;
+	private Image bgImage;
+	private FlyObject flyObject1;
 	public GamePlayScreen(Maingame game) {
 		super(game);
 	}
 	@Override
 	protected void init() {
-		bgTexture = new Texture("assets/meadow.png");
+		
+		initBg();
 		initPlayer();
 		initPlayerButton();
 		initResetScoreButton();
+		initFlyObjects();
 	}
 
 
+	private void initFlyObjects() {
+		flyObject1 = new FlyObject(flyObject1.MONEY);
+		stage.addActor(flyObject1);
+		flyObject1.fly();
+	}
+	private void initBg() {
+		bgImage = new Image(new Texture("assets/meadow.png"));
+		stage.addActor(bgImage);
+		
+	}
 	private void initResetScoreButton() {
 		resetScoreButton = new ResetScoreButton(new IClickCallback(){
 			
@@ -78,9 +93,7 @@ public class GamePlayScreen extends AbstractScreen {
 		update();
 
 		spriteBatch.begin();
-		spriteBatch.draw(bgTexture, 0, 0,  Maingame.WIDTH, Maingame.HEIGHT);
-		spriteBatch.end();
-		spriteBatch.begin();
+		
 		stage.draw();//narysuj scene z aktorami 
 		spriteBatch.end();
 	}
