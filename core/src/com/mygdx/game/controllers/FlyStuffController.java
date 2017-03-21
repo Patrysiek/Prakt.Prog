@@ -26,31 +26,47 @@ public class FlyStuffController {
 			@Override
 			public void run(){
 				
-				FlyObject flyObject = null;
 				
-				if(MathUtils.randomBoolean()){
+				Timer.schedule(new Task(){
 					
-					flyObject = new FlyObject(FlyObjectType.MONEY, game);
+					@Override
+					public void run(){
+						
+						addRandomFlyObjectToStage(game,stage);
+						randomizeSpawnTime();
+						
+					}
 					
-				}
-				else
-				{
-					flyObject = new FlyObject(FlyObjectType.PASSIVE, game);
-					
-				}
-				
-				
-				stage.addActor(flyObject);
-				flyObject.fly();
-				
-				randomizeSpawnTime();
+				}, randomSpawnTime);
 			}
 			
-		}, randomSpawnTime,randomSpawnTime);
+		}, 5,5);
 	}
 
 	private void randomizeSpawnTime() {
-		randomSpawnTime = MathUtils.random(5 ,10);
+		randomSpawnTime = MathUtils.random(1,10);
+		
+	}
+
+	private void addRandomFlyObjectToStage(Maingame game, Stage stage){
+		FlyObject flyObject = null;
+		
+		if(MathUtils.randomBoolean()){
+			
+			flyObject = new FlyObject(FlyObjectType.MONEY, game);
+			
+		}
+		else
+		{
+			flyObject = new FlyObject(FlyObjectType.PASSIVE, game);
+			
+		}
+		
+		
+		stage.addActor(flyObject);
+		flyObject.fly();
+		
+		
 		
 	}
 }
