@@ -1,6 +1,7 @@
 package com.mygdx.game.entities;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.scenes.scene2d.Action;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
@@ -20,10 +21,17 @@ public class FlyObject extends Image{
 	private final static int WIDTH = 50;
 	private final static int HEIGHT= 50;
 	
-	private final static int STARTING_X = 0;
+	private final static int STARTING_X_1 = 0;
+	private final static int STARTING_X_2 = Maingame.WIDTH;
 	private final static int STARTING_Y = -100;
+	
+	
+	
 	private FlyObjectType type;
 	private Maingame game;
+	
+	private int startingX;
+	
 	public FlyObject(FlyObjectType type, Maingame game){
 		super(new Texture(getTextureString(type)));
 
@@ -34,8 +42,13 @@ this.game = game;
 		this.setOrigin(WIDTH/2, HEIGHT/2);
 		this.setSize(WIDTH, HEIGHT);
 		
+		
+		
+		
+		
 		//starting position
-		this.setPosition(STARTING_X, STARTING_Y);
+		startingX = MathUtils.randomBoolean() ? STARTING_X_1 : STARTING_X_2;
+		this.setPosition(startingX, STARTING_Y);
 		
 		this.addListener(new ClickListener(){
 			
@@ -77,12 +90,33 @@ this.game = game;
 		return "";
 	}
 	public void fly(){
+		
+		int xSign = 0;
+		
+		
+		if(startingX == STARTING_X_1)
+		{
+			
+			xSign = 1;
+			
+		}
+		else
+{
+			
+			xSign = -1;
+			
+		}
+			
+		
+		
+		
+		
 		Action a = Actions.parallel(
-				Actions.moveBy(300, 200, 5),
+				Actions.moveBy(xSign *(MathUtils.random(0,300)+300), MathUtils.random(100,200)+200, MathUtils.random(1,5)),
 				Actions.rotateBy(360,5)
 				);
 		Action b = Actions.parallel(
-				Actions.moveBy(-500, 900, 3),
+				Actions.moveBy(xSign * -500, 900, 3),
 				Actions.rotateBy(360,3)
 				);
 				Action c = Actions.run(new Runnable(){
