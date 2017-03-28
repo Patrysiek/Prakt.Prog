@@ -65,23 +65,31 @@ this.game = game;
 			
 		});
 	}
+	
 	private void moneySpawnplay() {
 	if(FlyObjectType.MONEY.equals(type)){
 		game.getSoundService().moneySoundplay();
-		
 	}
+	else{
+		game.getSoundService().money2Soundplay();
+	}
+	
 		
 	}
 	private void reactOnClick() {
 	
+		
+		
 		if(FlyObjectType.MONEY.equals(type)){
 			game.addPoints(50);
 		}
 		else if(FlyObjectType.PASSIVE.equals(type)){
 			game.addPassiveIncome();
 		}
+		game.getSoundService().flyObjectSoundplay();
 		FlyObject.this.remove();
 	}
+	
 	private static String getTextureString(FlyObjectType type) {
 		
 		if(FlyObjectType.MONEY.equals(type)){

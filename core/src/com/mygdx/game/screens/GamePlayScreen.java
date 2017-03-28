@@ -30,9 +30,14 @@ public class GamePlayScreen extends AbstractScreen {
 		initPlayerButton();
 		initResetScoreButton();
 		initFlyStuffController();
+		startPlayMusic();
 	}
 
 
+private void startPlayMusic() {
+		game.getSoundService().startPlayMusic(true);
+		
+	}
 private void initFlyStuffController() {
 	
 	
@@ -75,6 +80,7 @@ private void initFlyStuffController() {
 			public void onClick(){
 			player.reactOnClick();
 			game.addPoint();
+			game.getSoundService().jumpSoundplay();
 			
 	}
 	
