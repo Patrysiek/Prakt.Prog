@@ -43,7 +43,7 @@ this.game = game;
 		this.setSize(WIDTH, HEIGHT);
 		
 		
-		
+		moneySpawnplay();
 		
 		
 		//starting position
@@ -64,6 +64,13 @@ this.game = game;
 			
 			
 		});
+	}
+	private void moneySpawnplay() {
+	if(FlyObjectType.MONEY.equals(type)){
+		game.getSoundService().moneySoundplay();
+		
+	}
+		
 	}
 	private void reactOnClick() {
 	

@@ -5,6 +5,7 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Preferences;
 import com.mygdx.game.screens.SplashScreen;
+import com.mygdx.game.service.SoundService;
 
 public class Maingame extends Game {
 	public final static String GAME_PREFS = "com.mygdx.game.prefs";
@@ -13,19 +14,49 @@ public class Maingame extends Game {
 	
 	public final static int WIDTH = 480;
 	public final static int HEIGHT = 700;
+	
+	private SoundService soundService;
 
+	
 	private boolean pause;
 	private int points;
 	private Preferences prefs;
 	@Override
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	public void create () {
 		init();
 this.setScreen(new SplashScreen(this));
 		
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	private void init() {
 	prefs  = Gdx.app.getPreferences(GAME_PREFS);
 	loadScore();
+	initSoundService();
+	
+		
+	}
+	
+	
+	
+	private void initSoundService() {
+	soundService = new SoundService();
 		
 	}
 	private void loadScore() {
@@ -82,6 +113,10 @@ this.setScreen(new SplashScreen(this));
 	public int getPoints() {
 		return points;
 	}
+	public SoundService getSoundService() {
+		return soundService;
+	}
+
 	
 
 
