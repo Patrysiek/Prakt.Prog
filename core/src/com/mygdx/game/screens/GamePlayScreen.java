@@ -5,6 +5,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.mygdx.game.Maingame;
 import com.mygdx.game.controllers.FlyStuffController;
 import com.mygdx.game.entities.Player;
+import com.mygdx.game.service.PassiveIncomeService;
 import com.mygdx.game.ui.IClickCallback;
 import com.mygdx.game.ui.PlayerButton;
 import com.mygdx.game.ui.ResetScoreButton;
@@ -17,6 +18,7 @@ public class GamePlayScreen extends AbstractScreen {
 	private ResetScoreButton resetScoreButton;
 	private ScoreLabel scoreLabel;
 	private Image bgImage;
+	private PassiveIncomeService passiveIncomeService;
 	
 	private FlyStuffController flyStuffControler;
 	public GamePlayScreen(Maingame game) {
@@ -31,9 +33,33 @@ public class GamePlayScreen extends AbstractScreen {
 		initResetScoreButton();
 		initFlyStuffController();
 		startPlayMusic();
+		initPassiveIncomeService();
+	}
+	@Override
+	public void render(float delta) {
+		super.render(delta);
+		update();
+
+		spriteBatch.begin();
+		
+		stage.draw();//narysuj scene z aktorami 
+		spriteBatch.end();
 	}
 
+	private void update() {
+		scoreLabel.setText("score :" + game. getScoreService().getPoints());
+		stage.act();//rob update co klatke dla wszystkich aktorow
 
+	}
+
+	
+	
+
+private void initPassiveIncomeService() {
+		passiveIncomeService = new PassiveIncomeService(game.getScoreService());
+		passiveIncomeService.start();
+		
+	}
 private void startPlayMusic() {
 		game.getSoundService().startPlayMusic(true);
 		
@@ -96,22 +122,7 @@ private void initFlyStuffController() {
 
 	
 	
-	@Override
-	public void render(float delta) {
-		super.render(delta);
-		update();
-
-		spriteBatch.begin();
-		
-		stage.draw();//narysuj scene z aktorami 
-		spriteBatch.end();
-	}
-
-	private void update() {
-		scoreLabel.setText("score :" + game. getScoreService().getPoints());
-		stage.act();//rob update co klatke dla wszystkich aktorow
-
-	}
+	
 
 
 
