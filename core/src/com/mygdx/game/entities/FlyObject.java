@@ -81,10 +81,10 @@ this.game = game;
 		
 		
 		if(FlyObjectType.MONEY.equals(type)){
-			game.addPoints(50);
+			game.getScoreService().addPoints(50);
 		}
 		else if(FlyObjectType.PASSIVE.equals(type)){
-			game.addPassiveIncome();
+			game. getScoreService().addPassiveIncome();
 		}
 		game.getSoundService().flyObjectSoundplay();
 		FlyObject.this.remove();

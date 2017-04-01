@@ -54,7 +54,7 @@ private void initFlyStuffController() {
 		resetScoreButton = new ResetScoreButton(new IClickCallback(){
 			
 			public void onClick(){
-				game.resetGameScore();
+				game.getScoreService().resetGameScore();
 			}
 			
 			
@@ -79,7 +79,7 @@ private void initFlyStuffController() {
 			@Override
 			public void onClick(){
 			player.reactOnClick();
-			game.addPoint();
+			game. getScoreService().addPoint();
 			game.getSoundService().jumpSoundplay();
 			
 	}
@@ -108,7 +108,7 @@ private void initFlyStuffController() {
 	}
 
 	private void update() {
-		scoreLabel.setText("score :" + game.getPoints());
+		scoreLabel.setText("score :" + game. getScoreService().getPoints());
 		stage.act();//rob update co klatke dla wszystkich aktorow
 
 	}

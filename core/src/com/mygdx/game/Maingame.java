@@ -2,25 +2,22 @@ package com.mygdx.game;
 
 
 import com.badlogic.gdx.Game;
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Preferences;
 import com.mygdx.game.screens.SplashScreen;
+import com.mygdx.game.service.ScoreService;
 import com.mygdx.game.service.SoundService;
 
 public class Maingame extends Game {
-	public final static String GAME_PREFS = "com.mygdx.game.prefs";
-	public final static String GAME_SCORE = "com.mygdx.game.prefs.score";
+	
 	public final static String NAME = "Tutorial Clicker";
 	
 	public final static int WIDTH = 480;
 	public final static int HEIGHT = 700;
 	
 	private SoundService soundService;
-
+	private ScoreService scoreService;
 	
 	private boolean pause;
-	private int points;
-	private Preferences prefs;
+	
 	@Override
 	
 	
@@ -30,7 +27,7 @@ public class Maingame extends Game {
 	
 	
 	
-	
+
 	public void create () {
 		init();
 this.setScreen(new SplashScreen(this));
@@ -46,42 +43,20 @@ this.setScreen(new SplashScreen(this));
 	
 	
 	private void init() {
-	prefs  = Gdx.app.getPreferences(GAME_PREFS);
-	loadScore();
-	initSoundService();
 	
+	initSoundService();
+	initScoreService();
 		
 	}
 	
-	
+	private void initScoreService() {
+		scoreService = new ScoreService();
+			
+		}
 	
 	private void initSoundService() {
 	soundService = new SoundService();
 		
-	}
-	private void loadScore() {
-		points = prefs.getInteger(GAME_SCORE);
-		
-	}
-	public void addPoints(int pointsToAdd){
-		points+=pointsToAdd;
-		UpdateSavedScore();
-}
-	public void addPoint(){
-		points++;
-		UpdateSavedScore();
-}
-	private void UpdateSavedScore() {
-		prefs.putInteger(GAME_SCORE, points);
-		prefs.flush();
-	}
-	public void resetGameScore() {
-		points = 0;
-		UpdateSavedScore();
-	}
-	public void addPassiveIncome() {
-		// TODO implement
-		System.out.println("passie income");
 	}
 
 	/**
@@ -104,32 +79,17 @@ this.setScreen(new SplashScreen(this));
 	}
 
 
-
-
-
-
-
-
-	public int getPoints() {
-		return points;
-	}
 	public SoundService getSoundService() {
 		return soundService;
 	}
 
-	
 
 
+	public ScoreService getScoreService() {
+		return scoreService;
+	}
 
 
-
-
-
-
-
-	
-
-	
 	
 	
 }
