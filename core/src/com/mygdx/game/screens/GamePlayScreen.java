@@ -45,6 +45,11 @@ public class GamePlayScreen extends AbstractScreen {
 		stage.draw();//narysuj scene z aktorami 
 		spriteBatch.end();
 	}
+	@Override
+	public void pause() {
+		super.pause();
+		game.getScoreService().saveCurrentTimestamp();
+	}
 
 	private void update() {
 		scoreLabel.setText("score :" + game. getScoreService().getPoints());
