@@ -18,7 +18,6 @@ public class ScoreService {
 	private int passiveIncome;
 
 	
-	
 	public  ScoreService(){
 		init();
 		

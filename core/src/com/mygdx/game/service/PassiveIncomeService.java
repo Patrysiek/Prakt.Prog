@@ -9,6 +9,7 @@ import com.badlogic.gdx.utils.Timer.Task;
 public class PassiveIncomeService {
 	private ScoreService scoreService;
 	private final static int INFINITE = 100000000;
+	private int pointsToAdd;
 
 public PassiveIncomeService(ScoreService scoreService)	{
 		this.scoreService = scoreService;
@@ -46,11 +47,18 @@ public PassiveIncomeService(ScoreService scoreService)	{
 	}
 	private void addPointsBasingOnPassedTime(long seconds){
 		if(seconds>0){
-			int points = (int)(seconds * scoreService.getPassiveIncome());
-			points /= 5;
-			scoreService.addPoints(points);
+			pointsToAdd = (int)(seconds * scoreService.getPassiveIncome());
+			pointsToAdd /= 5;
+			scoreService.addPoints(pointsToAdd);
 			
 		}
+		
+		
+	}
+	
+	public int getPointsToAdd(){
+		
+		return pointsToAdd;
 		
 		
 	}
