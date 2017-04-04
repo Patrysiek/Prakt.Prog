@@ -48,7 +48,8 @@ public class GamePlayScreen extends AbstractScreen {
 	@Override
 	public void pause() {
 		super.pause();
-		game.getScoreService().saveCurrentTimestamp();
+	
+		game.getScoreService().saveCurrentGamestate();
 	}
 
 	private void update() {

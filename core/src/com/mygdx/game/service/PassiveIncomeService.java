@@ -30,7 +30,7 @@ public PassiveIncomeService(ScoreService scoreService)	{
 		
 	}
 	void calculateGainedPassiveIncome() {
-		long savedTimeStamp = scoreService.getSavedTimestamp();
+		long savedTimeStamp = scoreService.saveCurrentGamestate();
 		if(savedTimeStamp>0){
 			
 			long millisPassed = TimeUtils.timeSinceMillis(savedTimeStamp);
