@@ -1,18 +1,21 @@
 package com.mygdx.game.controllers;
 
 import com.badlogic.gdx.math.MathUtils;
+import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.Timer;
 import com.badlogic.gdx.utils.Timer.Task;
 import com.mygdx.game.Maingame;
+import com.mygdx.game.ui.BasicDialog;
 
 public class RandomEventController {
 	private Maingame game;
-	
+	private Stage stage;
 	private static final int RANDOM_TICK_INTERVAL = 5;
 	
-	public RandomEventController(Maingame game){
+	public RandomEventController(Maingame game, Stage stage){
 	
 		this.game = game;
+		this.stage = stage;
 		init();
 		
 		
@@ -51,8 +54,9 @@ public class RandomEventController {
 			case 2:
 			loseMoneyEvent();
 			break;
-			case 2:
+			case 3:
 				gainPassiveIncome();
+				
 				break;
 			default:
 				break;
@@ -60,11 +64,17 @@ public class RandomEventController {
 		
 		
 	}
+	private void triggerDialog(String text){
+		
+		BasicDialog basicDialog = new BasicDialog(); 
+		basicDialog.showDialog(stage,text);
+	}
 
 
 
 	private void gainPassiveIncome() {
 		game.getScoreService().addPassiveIncome();
+		triggerDialog("Yaaay! You gained passive Income");
 		
 	}
 
@@ -72,6 +82,7 @@ public class RandomEventController {
 
 	private void loseMoneyEvent() {
 		game.getScoreService().addPoints(-123);	
+		triggerDialog("ooh crap ;c You lose -123 points");
 		
 	}
 
@@ -79,6 +90,7 @@ public class RandomEventController {
 
 	private void gainmoneyEvent() {
 		game.getScoreService().addPoints(123);
+		triggerDialog("Yaaay! You gained 123 points");
 		
 	}
 
