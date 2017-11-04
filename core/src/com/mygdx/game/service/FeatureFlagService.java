@@ -1,5 +1,11 @@
 package com.mygdx.game.service;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Net.HttpMethods;
 import com.badlogic.gdx.Net.HttpRequest;
@@ -15,7 +21,16 @@ public class FeatureFlagService {
 	public static final String FEATURE_SHOP = "FEATURE_SHOP";
 	
 	
-	private boolean shop = false;
+
+	private Map<String,Boolean> featureMap;
+	
+	public FeatureFlagService(){
+		
+		featureMap = new HashMap<String,Boolean>();
+		
+	}
+	
+	
 
 	public void makeRequest(final IRequestCallback requestCallback) {
 		
@@ -25,12 +40,15 @@ public class FeatureFlagService {
 			
 			@Override
 			public void handleHttpResponse(HttpResponse httpResponse) {
-				System.out.println("Result: ");
-				 System.out.println(httpResponse.getResultAsString());
-				 System.out.println("--------------------------- ");
+
+				
+				
+				parseResponse(httpResponse.getResultAsString());
 				 requestCallback.onSucceed();
 			}
 			
+
+
 			@Override
 			public void failed(Throwable t) {
 				requestCallback.onError();
@@ -46,17 +64,39 @@ public class FeatureFlagService {
 	}
 	
 	
+	private void parseResponse(String resultAsString) {
+		System.out.println(resultAsString);
+		
+	try {
+		JSONObject obj = new JSONObject(resultAsString);
+		JSONArray jsonArray = obj.getJSONArray("features");
+		for(int i=0; i< jsonArray.length(); i++)
+		{
+			
+			JSONObject innerObj = jsonArray.getJSONObject(i);
+			featureMap.put((String)innerObj.get("name"),(Boolean)innerObj.get("active"));
+			
+		}
+		System.out.println("testing parsed map");
+		System.out.println("Map: "+ featureMap);
+		
+	} 
+	catch (Exception e) {
+		e.printStackTrace();
+	}
+		
+		
+	}
+	
+public boolean hasFeature(String s) {
+		
+	if(featureMap.containsKey(s))
+		return featureMap.get(s);
+	else
+		return false;
 	
 	
-
-	public boolean hasShop() {
-		return shop;
-	}
-
-
-	public void setShop(boolean shop) {
-		this.shop = shop;
-	}
+}
 	
 	
 }
