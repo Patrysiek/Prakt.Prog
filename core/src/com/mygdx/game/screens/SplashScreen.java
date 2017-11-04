@@ -1,8 +1,10 @@
  package com.mygdx.game.screens;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.utils.Timer;
 import com.badlogic.gdx.utils.Timer.Task;
+import com.mygdx.game.IRequestCallback;
 import com.mygdx.game.Maingame;
 
 public class SplashScreen extends AbstractScreen{
@@ -13,16 +15,7 @@ public class SplashScreen extends AbstractScreen{
 		super(game);
 		init();
 		
-	Timer.schedule(new Task(){
-		
-			@Override
-			public void run(){
-			game.setScreen(new GamePlayScreen(game));
-			
-			}
-		
-		
-		},1);
+
 	}
 
 
@@ -40,6 +33,29 @@ public class SplashScreen extends AbstractScreen{
 	@Override
 	protected void init() {
 		splashImg = new Texture("assets/splash.png");
+		
+		game.getFeatureFlagService().makeRequest(new IRequestCallback() {
+			
+			@Override
+			public void onSucceed() {
+				Gdx.app.postRunnable(new Runnable() {
+					
+					@Override
+					public void run() {
+						game.setScreen(new GamePlayScreen(game));
+					
+					}
+				});
+				
+				
+			}
+			
+			@Override
+			public void onError() {
+				// TODO make some error messages
+				
+			}
+		});
 		
 	}
 

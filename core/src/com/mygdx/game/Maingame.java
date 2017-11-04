@@ -63,7 +63,7 @@ this.setScreen(new SplashScreen(this));
 	private void initFeatureFlagService() {
 		
 		
-		setFeatureFlagService(new FeatureFlagService());
+		featureFlagService = new FeatureFlagService();
 		
 	}
 	private void initScoreService() {
