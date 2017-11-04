@@ -19,15 +19,6 @@ public class Maingame extends Game {
 	private boolean pause;
 	
 	@Override
-	
-	
-	
-	
-	
-	
-	
-	
-
 	public void create () {
 		init();
 this.setScreen(new SplashScreen(this));

@@ -27,14 +27,8 @@ public abstract class AbstractScreen implements Screen{
 	}
 
 	
-		
-		
-	
 
 	 protected abstract void init();
-
-
-
 
 
 
