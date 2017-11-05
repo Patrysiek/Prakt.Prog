@@ -3,6 +3,7 @@ package com.mygdx.game;
 
 import com.badlogic.gdx.Game;
 import com.mygdx.game.screens.SplashScreen;
+import com.mygdx.game.service.BalanceService;
 import com.mygdx.game.service.FeatureFlagService;
 import com.mygdx.game.service.ScoreService;
 import com.mygdx.game.service.ShopService;
@@ -19,6 +20,7 @@ public class Maingame extends Game {
 	private ScoreService scoreService;
 	private FeatureFlagService featureFlagService;
 	private ShopService shopService;
+	private BalanceService balanceService;
 	private boolean pause;
 	
 	@Override
@@ -51,9 +53,23 @@ this.setScreen(new SplashScreen(this));
 	initScoreService();
 	initFeatureFlagService();
 	initShopShervice();
+	initBalanceShervice();
 		
 	}
 	
+
+
+
+
+
+
+
+
+
+	private void initBalanceShervice() {
+		balanceService = new BalanceService();
+		
+	}
 
 
 
@@ -154,13 +170,9 @@ this.setScreen(new SplashScreen(this));
 
 
 
-
-
-
-
-
-
-
+	public BalanceService getBalanceService() {
+		return balanceService;
+	}
 
 
 
