@@ -81,7 +81,7 @@ this.game = game;
 		
 		
 		if(FlyObjectType.MONEY.equals(type)){
-			game.getScoreService().addPoints(50);
+			game.getScoreService().addPoints(game.getBalanceService().getMoney_click_value());
 		}
 		else if(FlyObjectType.PASSIVE.equals(type)){
 			game. getScoreService().addPassiveIncome();
