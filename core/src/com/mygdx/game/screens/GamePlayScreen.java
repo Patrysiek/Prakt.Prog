@@ -6,6 +6,7 @@ import com.mygdx.game.Maingame;
 import com.mygdx.game.controllers.FlyStuffController;
 import com.mygdx.game.controllers.RandomEventController;
 import com.mygdx.game.entities.Player;
+import com.mygdx.game.service.FeatureFlagService;
 import com.mygdx.game.service.PassiveIncomeService;
 import com.mygdx.game.ui.IClickCallback;
 import com.mygdx.game.ui.PlayerButton;
@@ -38,6 +39,14 @@ public class GamePlayScreen extends AbstractScreen {
 		initPassiveIncomeService();
 		initPassiceIncomeDialogInformate();
 		initRandomEventController();
+		startShop();
+	}
+	private void startShop() {
+		
+		if(game.getFeatureFlagService().hasFeature(FeatureFlagService.FEATURE_SHOP)) {
+			game.getShopService().dummyMethod();
+		}
+		
 	}
 	private void initRandomEventController() {
 		randomEventController = new RandomEventController(game,stage);

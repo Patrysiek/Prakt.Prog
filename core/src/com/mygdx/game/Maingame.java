@@ -5,6 +5,7 @@ import com.badlogic.gdx.Game;
 import com.mygdx.game.screens.SplashScreen;
 import com.mygdx.game.service.FeatureFlagService;
 import com.mygdx.game.service.ScoreService;
+import com.mygdx.game.service.ShopService;
 import com.mygdx.game.service.SoundService;
 
 public class Maingame extends Game {
@@ -17,6 +18,7 @@ public class Maingame extends Game {
 	private SoundService soundService;
 	private ScoreService scoreService;
 	private FeatureFlagService featureFlagService;
+	private ShopService shopService;
 	private boolean pause;
 	
 	@Override
@@ -48,9 +50,23 @@ this.setScreen(new SplashScreen(this));
 	initSoundService();
 	initScoreService();
 	initFeatureFlagService();
+	initShopShervice();
 		
 	}
 	
+
+
+
+
+
+
+
+
+
+	private void initShopShervice() {
+		shopService = new ShopService();
+		
+	}
 
 
 
@@ -117,6 +133,27 @@ this.setScreen(new SplashScreen(this));
 	public FeatureFlagService getFeatureFlagService() {
 		return featureFlagService;
 	}
+
+
+
+
+
+
+
+
+
+	public ShopService getShopService() {
+		return shopService;
+	}
+
+
+
+
+
+
+
+
+
 
 
 
